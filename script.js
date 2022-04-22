@@ -1,64 +1,65 @@
 const texts = document.querySelector('textarea');
-        const selectVoiceList = document.querySelector('select');
-        const button = document.querySelector('button');
-        let isSpeaking = true;
+const selectVoiceList = document.querySelector('select');
+const button = document.querySelector('button');
+let isSpeaking = true;
 
-        const voices = ()=>{
-            for(let voice of speechSynthesis.getVoices()){
+const voices = ()=>{
+    for(let voice of speechSynthesis.getVoices()){
 
-                let selected = "";
-                if(voice.name === "Google US English"){
-                    selected = "selected";
-                }
-
-                // Create option values 
-                let option = `<option value="${voice.name}" ${selected}>${voice.name} (${voice.lang})</option>`
-                selectVoiceList.insertAdjacentHTML("beforeend",option);
-            }
+        let selected = "";
+        if(voice.name === "Google US English"){
+            selected = "selected";
         }
 
-        speechSynthesis.addEventListener("voiceschanged", voices);
+        // Create option values 
+        let option = `<option value="${voice.name}" ${selected}>${voice.name} (${voice.lang})</option>`
+        selectVoiceList.insertAdjacentHTML("beforeend",option);
+    }
+}
 
-        const playAudio = (text)=>{
-            let utterance = new SpeechSynthesisUtterance(text);
-            // This will change voice according to user choice 
-            for(let voice of speechSynthesis.getVoices()){
-                if(voice.name === selectVoiceList.value){
-                    utterance.voice = voice;
-                }
-            }
+speechSynthesis.addEventListener("voiceschanged", voices);
 
-            // This will play the audio 
-            speechSynthesis.speak(utterance);
+const playAudio = (text)=>{
+    let utterance = new SpeechSynthesisUtterance(text);
+    // This will change voice according to user choice 
+    for(let voice of speechSynthesis.getVoices()){
+        if(voice.name === selectVoiceList.value){
+            utterance.voice = voice;
         }
+    }
 
-        button.addEventListener("click", fun =>{
-            fun.preventDefault();
-            if(texts.value !== ""){
-                if(speechSynthesis.speaking == false){  
-                    playAudio(texts.value);
-                }
-                if(texts.value.length > 60){
-                    if(isSpeaking){
-                        speechSynthesis.resume();
-                        isSpeaking = false;
-                        button.innerText = "Pause";
-                        button.style = "background: rgb(203, 4, 4);";
-                    }
-                    else{
-                        speechSynthesis.pause();
-                        isSpeaking = true;
-                        button.innerText = "Resume";
-                        button.style = "rgb(3, 163, 3)"
-                    }
+    // This will play the audio 
+    speechSynthesis.speak(utterance);
+}
 
-                    setInterval(()=>{
-                        if(isSpeaking == false && speechSynthesis.speaking == false){
-                            isSpeaking == true;
-                            button.innerText = "Listen The Text";
-                            button.style = "rgb(3, 163, 3";
-                        }
-                    })
-                }
+button.addEventListener("click", fun =>{
+    fun.preventDefault();
+    if(texts.value !== ""){
+        if(speechSynthesis.speaking == false){  
+            playAudio(texts.value);
+        }
+        This is to pause or resume the audio 
+        if(texts.value.length > 60){
+            if(isSpeaking){
+                speechSynthesis.resume();
+                isSpeaking = false;
+                button.innerText = "Pause";
+                button.style = "background: rgb(203, 4, 4);";
             }
-        })
+            else{
+                speechSynthesis.pause();
+                isSpeaking = true;
+                button.innerText = "Resume";
+                button.style = "rgb(3, 163, 3)"
+            }
+
+            setInterval(()=>{
+                if(isSpeaking == false && speechSynthesis.speaking == false){
+                    isSpeaking == true;
+                    button.innerText = "Listen The Text";
+                    button.style = "rgb(3, 163, 3";
+                }
+            })
+        }
+    }
+})
