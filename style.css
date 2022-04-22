@@ -1,0 +1,114 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    background: url("bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 255, 0.135);
+}
+.container{
+    width: 50rem;
+    border-radius: .5rem;
+    background: #fff;
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.heading{
+    font-size: 3.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+form{
+    width: 100%;
+}
+
+form .row{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+form .row label{
+    font-size: 2rem;
+    letter-spacing: .8px;
+    margin-bottom: .5rem;
+    font-weight: 400;
+}
+
+form :where(textarea, select, button){
+    width: 100%;
+    outline: none;
+    border: 1px solid #999;
+    border-radius: .5rem;
+}
+
+form .row textarea{
+    resize: none;
+    height: 150px;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    color: rgb(35, 35, 35);
+}
+
+form .row select{
+    height: 4rem;
+    font-size: 1.7rem;
+    padding: .8rem 1rem;
+    cursor: pointer;
+}
+
+
+form button{
+    height: 4rem;
+    background: rgb(3, 163, 3);
+    color:#fff;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 1.8rem 0 2rem 0;
+}
+form button:hover{
+    background: rgb(4, 122, 4);
+}
+
+@media (max-width:760px){
+    html{
+        font-size: 53%;
+    }
+}
+@media (max-width:560px){
+    html{
+        font-size: 42%;
+    }
+}
+@media (max-width:420px){
+    html{
+        font-size: 38%;
+    }
+}
+@media (max-width:270px){
+    html{
+        font-size: 20%;
+    }
+}
